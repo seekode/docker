@@ -3,7 +3,7 @@ services:
     container_name: app-con
     image: nginx:latest
     volumes:
-      - ./public:/var/www/html/
+      - ./public:/usr/share/nginx/html
     ports:
       - 80:80
     networks:
