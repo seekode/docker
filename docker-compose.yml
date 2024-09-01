@@ -1,4 +1,14 @@
 services:
+  apache:
+    container_name: app-con
+    image: nginx:latest
+    volumes:
+      - ./public:/var/www/html/
+    ports:
+      - 80:80
+    networks:
+      - app-network
+
   php:
     container_name: php-con
     build:
@@ -6,12 +16,12 @@ services:
       dockerfile: Dockerfile
     image: seekode-php-apache
     volumes:
-      - ./src:/var/www/html/
+      - ./api:/var/www/html/
     environment:
       XDEBUG_MODE: debug
       XDEBUG_CONFIG: remote_enable=1 remote_autostart=1
     ports:
-      - 80:80
+      - 5000:80
     networks:
       - app-network
 
